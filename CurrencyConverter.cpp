@@ -8,35 +8,20 @@
 #include <string.h>
 #include <stdlib.h>
 
-/*
-1. Ask User for currancy they would like to convert from
-and currancy they would like to convert to
-2. Find What currancy was given
-2. Convert the original currancy to US dollars
-3. Convert from dollars to the requested currancy
-
-Convert to Dollars:
-1. get the amount to convert
-
-Find what currancy what given:
-1. for each world currancy
-    2. if the entered currancy matches one of the world currancies
-        3. return that currancy
-*/
-
+// Struct that give access to the name and conversion rate
 struct Currency {
     char* name;
     double conversionRateToUSD;
 };
-
+// Converts from a given currency to USD
 double convertToDollars(struct Currency curr, double amount){
     return amount * curr.conversionRateToUSD;
 }
-
+// Converts from USD to a given currency
 double convertFromDollars(struct Currency curr, double amount){
     return amount / curr.conversionRateToUSD;
 }
-
+// Determines which currency the user inputted
 struct Currency findCurrencyInput(char* currencyName, struct Currency worldCurrancies[8]){
     for(int i = 0; i < 8; i++){
         for(int j = 0; j < 3; j++){
@@ -52,7 +37,7 @@ struct Currency findCurrencyInput(char* currencyName, struct Currency worldCurra
     printf("Not a valid Currency. Exiting. \n");
     exit(0);
 }
-
+// Sets what currencies are allowed to be converted
 void setWorldCurrencies(struct Currency curr[8]){
     curr[0].name = "USD";
     curr[0].conversionRateToUSD = 1;
